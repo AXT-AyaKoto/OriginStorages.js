@@ -39,7 +39,7 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
 - `script.js`または`script.min.js`を読み込んでください。
     - HTMLの場合 : `<script src="https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js"></script>`
     - ES Moduleの場合 : `import "https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js";`
-- `globalThis.getOriginStorageAccess()`から各機能にアクセスします。
+- `globalThis.OriginStorage`クラスから各機能にアクセスします。
 
 ## Usage / Specs
 
@@ -49,25 +49,19 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
     - そのため、外部から触って動かなくなっても責任は取れません
     - 各レコードは`{ key: any, value: any }`です、一応言及
 - 1つのOriginに対して複数のStorageを作ることができます
-    - `globalThis.getOriginStorageAccess(name)`で`name`という名前のStorageにアクセスできます
+    - `new globalThis.OriginStorage(name)`で`name`という名前のStorageにアクセスできます
 - メソッド・プロパティはすべて`Promise`を返します
     - `async/await`をつかうかメソッドチェーンを作るかしてください
-- IndexedDBの仕様上、しばらくアクセスしないときはちゃんと`close()`したほうがいいです
-    - 開いているアクセスがあるときに別のアクセスを作ることはできないらしい
-    - アクセスするときに都度`globalThis.getOriginStorageAccess(name)`を実行するのが理想
-    - `OriginStorageAccess.close()`でアクセスを閉じれます
 
 実装されているメソッド・プロパティは以下の通り。
 
-- `globalThis.getOriginStorageAccess: (name: string) => Promise<OriginStorageAccess>` : OriginStorageへの接続を取得
-- `OriginStorageAccess` : OriginStorageへの接続
-    - `.DB: IDBDatabase` : OriginStorageが使ってるIndexedDBのデータベース
-    - `.storageName: string` : 接続先のOriginStorageの名前
-    - `.close: () => Promise<void>` : DBへの接続を閉じる
-    - `.keys: (n: number) => Promise<string>` : ストレージ内n番目のキーの名称を返す
-    - `.setItem: (key: any, value: any) => Promise<void>` : ストレージに指定したキーと値を追加/更新
-    - `.getItem: (key: any) => Promise<any>` : ストレージ内の指定したキーの値を取得
-    - `.removeItem: (key: any) => Promise<void>` : ストレージ内の指定したキーと値のペアを削除
-    - `.clear: () => Promise<void>` : ストレージ内のすべてのキーと値のペアを削除
-    - `.length: Promise<number>` : ストレージ内のキーと値のペアの数を取得 (※getter)
+- `OriginStorageAccess` : OriginStorageへのアクセスを提供するクラス
+    - `new OriginStorageAccess(name)` : `name`という名前のOriginStorageにアクセスするためのインスタンスを作成
+        - `.storageName: string` : 接続先のOriginStorageの名前
+        - `.keys: (n: number) => Promise<string>` : ストレージ内n番目のキーの名称を返す
+        - `.setItem: (key: any, value: any) => Promise<void>` : ストレージに指定したキーと値を追加/更新
+        - `.getItem: (key: any) => Promise<any>` : ストレージ内の指定したキーの値を取得
+        - `.removeItem: (key: any) => Promise<void>` : ストレージ内の指定したキーと値のペアを削除
+        - `.clear: () => Promise<void>` : ストレージ内のすべてのキーと値のペアを削除
+        - `.length: Promise<number>` : ストレージ内のキーと値のペアの数を取得 (※getter)
 
