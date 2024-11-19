@@ -1,4 +1,4 @@
-# OriginStorages.js
+# AXT-AyaKoto/OriginStorages.js
 
 IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパーライブラリです。
 
@@ -39,8 +39,8 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
 - `script.js`または`script.min.js`を読み込んでください。
     - HTMLの場合 : `<script src="https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js"></script>`
     - ES Moduleの場合 : `import "https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js";`
-- `globalThis.OriginStorages`オブジェクトから各機能にアクセスします。
+- `globalThis.getOriginStorageAccess()`から各機能にアクセスします。
 
 ## Usage / Specification
 
-- `OriginStorages.js`はオリジンの`IndexedDB`に`AXT-AyaKoto/OriginStorages.js`という名前でデータベースを作成します。
+- `OriginStorages.js`はオリジンの`IndexedDB`に`AXT-AyaKoto/OriginStorages.js`という名前でデータベースを作成し、その中のオブジェクトストアを操作します。
