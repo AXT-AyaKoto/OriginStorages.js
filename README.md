@@ -36,7 +36,7 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
 
 ## Installation
 
-- `script.js`または`script.min.js`を読み込んでください。
+- `script.js`を読み込んでください。
     - HTMLの場合 : `<script src="https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js"></script>`
     - ES Moduleの場合 : `import "https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js";`
 - `globalThis.OriginStorage`クラスから各機能にアクセスします。
