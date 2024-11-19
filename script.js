@@ -46,15 +46,15 @@ globalThis.getOriginStorageAccess = async (name) => {
         }
     })
     /** @desc - OriginStorageDBとstorageNameを設定したOriginStorageインスタンスを返す */
-    return new OriginStorage(OriginStorageDB_main, name);
+    return new OriginStorageAccess(OriginStorageDB_main, name);
 };
 
 /**
- * @class OriginStorage
+ * @class OriginStorageへのアクセス
  * @property {IDBDatabase} DB - データベースへの接続
  * @property {string} storageName - ストレージの名前
  */
-const OriginStorage = class {
+const OriginStorageAccess = class {
     constructor(OriginStorageDB, storageName) {
         this.DB = OriginStorageDB;
         this.storageName = storageName;
