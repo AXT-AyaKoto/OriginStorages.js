@@ -166,7 +166,7 @@ const OriginStorage = class {
                 const request = objectStore.get(key);
                 /** @desc - success → 指定keyに対応するvalue(event.target.result.value)でresolve */
                 request.onsuccess = event => {
-                    resolve(event.target.result.value);
+                    resolve(event.target?.result?.value);
                 }
                 /** @desc - error → エラー内容でreject */
                 request.onerror = event => {
@@ -266,7 +266,7 @@ const OriginStorage = class {
                 const request = objectStore.count();
                 /** @desc - success → 件数(event.target.result)でresolve */
                 request.onsuccess = event => {
-                    resolve(event.target.result);
+                    resolve(event.target?.result);
                 }
                 /** @desc - error → エラー内容でreject */
                 request.onerror = event => {
