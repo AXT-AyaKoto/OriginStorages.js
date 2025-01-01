@@ -146,6 +146,10 @@ const OriginStorage = class {
             });
         });
     }
+    /** @type {(key: any, value: any) => Promise<void>} - ストレージに指定したキーと値を追加/更新する (エイリアス) */
+    set(key, value) {
+        return this.setItem(key, value);
+    }
     /** @type {(key: any) => Promise<any>} - ストレージ内の指定したキーの値を取得する */
     getItem(key) {
         return new Promise((resolve, reject) => {
@@ -170,6 +174,10 @@ const OriginStorage = class {
                 }
             });
         });
+    }
+    /** @type {(key: any) => Promise<any>} - ストレージ内の指定したキーの値を取得する (エイリアス) */
+    get(key) {
+        return this.getItem(key);
     }
     /** @type {(key: any) => Promise<void>} - ストレージ内の指定したキーと値のペアを削除する */
     removeItem(key) {
@@ -196,6 +204,10 @@ const OriginStorage = class {
             });
         });
     }
+    /** @type {(key: any) => Promise<void>} - ストレージ内の指定したキーと値のペアを削除する (エイリアス) */
+    delete(key) {
+        return this.removeItem(key);
+    }
     /** @type {() => Promise<void>} - ストレージ内のすべてのキーと値のペアを削除する */
     clear() {
         return new Promise((resolve, reject) => {
@@ -220,6 +232,23 @@ const OriginStorage = class {
                 }
             });
         });
+    }
+    /** @type {(key: any) => Promise<boolean>} - ストレージ内に指定されたキーで値が保存されているかを確認する */
+    has(key) {
+        return (async () => {
+            const length = await this.length;
+            const keyList = await Promise.all([...Array(length).keys()].map(n => this.keys(n)));
+            console.log(keyList);
+            return keyList.includes(key);
+        })();
+    }
+    /** @type {(key: any) => Promise<boolean>} - ストレージ内に保存されている値を列挙する(順不同) */
+    values() {
+        return (async () => {
+            const length = await this.length;
+            const keyList = await Promise.all([...Array(length).keys()].map(n => this.keys(n)));
+            return await Promise.all(keyList.map(key => this.get(key)));
+        })();
     }
     /** @type {Promise<number>} - ストレージ内のキーと値のペアの数を取得する */
     get length() {
