@@ -58,8 +58,13 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
         - `.storageName: string` : 接続先のOriginStorageの名前
         - `.keys: (n: number) => Promise<string>` : ストレージ内n番目のキーの名称を返す
         - `.setItem: (key: any, value: any) => Promise<void>` : ストレージに指定したキーと値を追加/更新
+            - エイリアス : `.set(key, value)`
         - `.getItem: (key: any) => Promise<any>` : ストレージ内の指定したキーの値を取得
+            - エイリアス : `.get(key)`
         - `.removeItem: (key: any) => Promise<void>` : ストレージ内の指定したキーと値のペアを削除
+            - エイリアス : `.delete(key)`
         - `.clear: () => Promise<void>` : ストレージ内のすべてのキーと値のペアを削除
+        - `.has: (key: any) => Promise<boolean>` : 指定したキーがストレージ内に存在するかどうかを確認
+        - `.values: () => Promise<any[]>` : ストレージ内のすべての値を取得
         - `.length: Promise<number>` : ストレージ内のキーと値のペアの数を取得 (※getter)
 

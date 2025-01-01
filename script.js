@@ -242,7 +242,7 @@ const OriginStorage = class {
             return keyList.includes(key);
         })();
     }
-    /** @type {(key: any) => Promise<boolean>} - ストレージ内に保存されている値を列挙する(順不同) */
+    /** @type {() => Promise<any[]>} - ストレージ内に保存されている値を列挙する(順不同) */
     values() {
         return (async () => {
             const length = await this.length;
