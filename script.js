@@ -3,7 +3,7 @@
  * @class OriginStorage
  * @property {string} storageName - ストレージの名前
  */
-globalThis.OriginStorage = class {
+const OriginStorage = class {
     constructor(storageName) {
         this.storageName = storageName;
     }
@@ -247,3 +247,5 @@ globalThis.OriginStorage = class {
         });
     }
 }
+
+export { OriginStorage };

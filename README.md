@@ -36,10 +36,8 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
 
 ## Installation
 
-- `script.js`を読み込んでください。
-    - HTMLの場合 : `<script src="https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js"></script>`
+- モジュールとして`script.js`を読み込んでください。
     - ES Moduleの場合 : `import "https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js";`
-- `globalThis.OriginStorage`クラスから各機能にアクセスします。
 
 ## Usage / Specs
 
@@ -49,14 +47,14 @@ IndexedDBのObjectStoreをWeb Storage APIのように扱うためのラッパー
     - そのため、外部から触って動かなくなっても責任は取れません
     - 各レコードは`{ key: any, value: any }`です、一応言及
 - 1つのOriginに対して複数のStorageを作ることができます
-    - `new globalThis.OriginStorage(name)`で`name`という名前のStorageにアクセスできます
+    - `new OriginStorage(name)`で`name`という名前のStorageにアクセスできます
 - メソッド・プロパティはすべて`Promise`を返します
     - `async/await`をつかうかメソッドチェーンを作るかしてください
 
 実装されているメソッド・プロパティは以下の通り。
 
-- `OriginStorageAccess` : OriginStorageへのアクセスを提供するクラス
-    - `new OriginStorageAccess(name)` : `name`という名前のOriginStorageにアクセスするためのインスタンスを作成
+- `OriginStorage` : OriginStorageへのアクセスを提供するクラス
+    - `new OriginStorage(name)` : `name`という名前のOriginStorageにアクセスするためのインスタンスを作成
         - `.storageName: string` : 接続先のOriginStorageの名前
         - `.keys: (n: number) => Promise<string>` : ストレージ内n番目のキーの名称を返す
         - `.setItem: (key: any, value: any) => Promise<void>` : ストレージに指定したキーと値を追加/更新
