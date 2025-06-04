@@ -1,7 +1,18 @@
 /**
  * OriginStorageへのアクセスを提供するクラス
  * @class OriginStorage
- * @property {string} storageName - ストレージの名前
+ * @property {string} storageName - 接続先のOriginStorageの名前
+ * @property {(n: number) => Promise<string>} keys - ストレージ内n番目のキーの名称を返す
+ * @property {(key: any, value: any) => Promise<void>} setItem - ストレージに指定したキーと値を追加/更新
+ * @property {(key: any, value: any) => Promise<void>} set - setItemのエイリアス
+ * @property {(key: any) => Promise<any>} getItem - ストレージ内の指定したキーの値を取得
+ * @property {(key: any) => Promise<any>} get - getItemのエイリアス
+ * @property {(key: any) => Promise<void>} removeItem - ストレージ内の指定したキーと値のペアを削除
+ * @property {(key: any) => Promise<void>} delete - removeItemのエイリアス
+ * @property {() => Promise<void>} clear - ストレージ内のすべてのキーと値のペアを削除
+ * @property {(key: any) => Promise<boolean>} has - 指定したキーがストレージ内に存在するかどうかを確認
+ * @property {() => Promise<any[]>} values - ストレージ内のすべての値を取得
+ * @property {Promise<number>} length - ストレージ内のキーと値のペアの数を取得
  */
 const OriginStorage = class {
     constructor(storageName) {
