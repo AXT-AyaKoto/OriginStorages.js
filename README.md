@@ -11,8 +11,8 @@ Released Under the [MIT License](https://opensource.org/license/mit).
 
 ## Installation
 
-- モジュールとして`script.js`を読み込んでください。
-    - ES Moduleの場合 : `import "https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/script.js";`
+- モジュールとして`module.mjs`を読み込んでください。
+    - ES Moduleの場合 : `import "https://cdn.jsdelivr.net/gh/AXT-AyaKoto/OriginStorages.js/module.mjs";`
 
 ## Usage / Specs
 
